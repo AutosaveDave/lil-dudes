@@ -19,7 +19,19 @@ export const newScene = ( variant, ctx, stageWidth, stageHeight ) => {
         ctx: ctx,
         ...sceneProps,
 
+        step: function ( delta ) {
+            if( !( delta === 0 || delta === undefined || delta === null ) ) {
+                const objCount = this.objects.length;
+                for( let i = 0 ; i < objCount ; i += 1 ) {
+                    this.objects[ i ].step( delta );
+                }
+                
+            }
+        },
         draw: function() {
+
+        },
+        start: function() {
 
         },
     }

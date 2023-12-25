@@ -12,6 +12,9 @@ export const newDude = ( x, y, variant, ctx ) => {
         y: y,
         ...dudeProps,
 
+        step: function( delta ) {
+
+        },
         draw: function() {
 
         },
