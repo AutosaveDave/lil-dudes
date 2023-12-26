@@ -19,24 +19,19 @@ export const newStage = ( canvasId, variant ) => {
         loadScene: function( variant ) {
             const _scene = newScene( variant, this.ctx, this.getWidth(), this.getHeight() );
             this.scene = _scene;
+            this.scene.loadSprites();
         },
 
-        step: function() {
-            this.scene.step( this.delta );
-        },
-        draw: function ( t ) {
+        step: function( t ) {
             if( this.prevTime === null ) {
                 this.prevTime = t;
             }
             this.delta = t - this.prevTime;
-            this.step();
-
-            if( !( this.scene === null ) ) {
-                this.scene.draw();
-            }
-            console.log( `delta = ${this.delta}`)
-            console.log( this )
-            this.prevTime = t;
+            this.scene.step( this.delta );
+        },
+        draw: function () {
+            this.clearFrame();
+            this.scene.draw();
             this.getFrame();
         },
         clearFrame: function() {
@@ -44,7 +39,11 @@ export const newStage = ( canvasId, variant ) => {
             this.ctx.clearRect( 0, 0, this.getWidth(), this.getHeight() ); // clear canvas
         },
         getFrame: function() {
-            this.frame = window.requestAnimationFrame( ( t ) => { this.draw( t ); } );
+            this.frame = window.requestAnimationFrame( ( t ) => {
+                this.step( t )
+                this.draw();
+                this.prevTime = t;
+            } );
         },
         start: function () {
             // this.handleResize();

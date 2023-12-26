@@ -17,31 +17,57 @@ export const defaults = {
     
     parts: {
         height: 5,  // all other lengths/widths are relative 
-        arms: {
-            sprites: {
-                left: null,
-                right: null,
+        arm: {
+            left: {
+                spriteName: 'dude0',
+                sprite: null,
+            },
+            right: {
+                spriteName: 'dude0',
+                sprite: null,
             },
             shoulderWidth: 1.25,
             length: 1,
             width: 0.42, // relative to length
         },
-        legs: {
-            sprites: {
-                left: null,
-                right: null,
+        leg: {
+            left: {
+                spriteName: 'dude0',
+                sprite: null,
+            },
+            right: {
+                spriteName: 'dude0',
+                sprite: null,
             },
             hipWidth: 0.9,
             length: 1,
             width: 0.48, // relative to length
         },
         torso: {
+            spriteName: 'dude0',
+            sprite: null,
             height: 1.1,
             width: 1.2,
         },
         head: {
+            spriteName: 'dude0',
+            sprite: null,
             height: 1.2,
             offset: 0.1, // How far from center head is pushed forward in facing direction
         },
+        eye: {
+            left: {
+                spriteName: 'dude0',
+                sprite: null,
+            },
+            right: {
+                spriteName: 'dude0',
+                sprite: null,
+            },
+        },
+        mouth: {
+            spriteName: 'dude0',
+            sprite: null,
+        }
     },
 }
