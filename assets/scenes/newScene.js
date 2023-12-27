@@ -28,8 +28,6 @@ export const newScene = ( variant, ctx, stageWidth, stageHeight ) => {
             this.objects.forEach( ( obj, obj_index ) => {
                 const _obj = obj;
                 Object.keys( loadedSprites ).forEach( ( key ) => {
-                    console.log(_obj)
-                    console.log( _obj.parts[ key ] )
                     const sNames = ( _obj.parts[ key ].hasOwnProperty( 'spriteName' )
                         ? [ _obj.parts[ key ].spriteName ]
                         : [ _obj.parts[ key ].left.spriteName, _obj.parts[ key ].right.spriteName ] 
