@@ -85,8 +85,8 @@ export const newDude = ( x, y, variant, ctx ) => {
 
             this.parts.torso.drawX = 0;
             this.parts.torso.drawY = -this.legHeight - (this.shoulderHeight)/2;
-            this.parts.head.drawX = this.headOffset*Math.cos( this.parts.head.dir );
-            this.parts.head.drawY = -this.legHeight - this.headHeight - this.headOffset*Math.sin( this.parts.head.dir );
+            this.parts.head.drawX = this.headOffset*Math.cos( this.parts.torso.dir );
+            this.parts.head.drawY = -this.legHeight - this.headHeight - yDrawScale*this.headOffset*Math.sin( this.parts.torso.dir );
         },
         step: function( delta ) {
             this.spinDude( Math.PI/4, delta );
@@ -104,9 +104,14 @@ export const newDude = ( x, y, variant, ctx ) => {
 
             this.ctx.drawImage( this.getPartSketch( 'leg', order.leg[0] ), this.x + this.parts.leg[ order.leg[0] ].drawX, this.y + this.parts.leg[ order.leg[0] ].drawY );
             this.ctx.drawImage( this.getPartSketch( 'leg', order.leg[1] ), this.x + this.parts.leg[ order.leg[1] ].drawX, this.y + this.parts.leg[ order.leg[1] ].drawY );
-
+            const headInBack = ( this.parts.torso.dir > Math.PI/4 && this.parts.torso.dir < 3*Math.PI/4 )
+            if( headInBack ) {
+                this.ctx.drawImage( this.parts.head.sprite, this.x + this.parts.head.drawX, this.y + this.parts.head.drawY );
+            }
             this.ctx.drawImage( this.parts.torso.sprite, this.x + this.parts.torso.drawX, this.y + this.parts.torso.drawY );
-            this.ctx.drawImage( this.parts.head.sprite, this.x + this.parts.head.drawX, this.y + this.parts.head.drawY );
+            if( !headInBack ) {
+                this.ctx.drawImage( this.parts.head.sprite, this.x + this.parts.head.drawX, this.y + this.parts.head.drawY );
+            }
 
             this.ctx.drawImage( this.getPartSketch( 'arm', order.arm[1] ), this.x + this.parts.arm[ order.arm[1] ].drawX, this.y + this.parts.arm[ order.arm[1] ].drawY );
         },
