@@ -8,7 +8,7 @@ export const test = {
         zoom: 1,
     },
     objects: [
-        [ 0.5, 0.5, 'defaults' ],
+        [ 0.5, 0.9, 'defaults' ],
     ],
     speed: 1,
 }

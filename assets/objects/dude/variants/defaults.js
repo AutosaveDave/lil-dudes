@@ -15,8 +15,13 @@ export const defaults = {
         maxSpeed: 12,
     },
     height: 5,  // all other lengths/widths are relative 
+    legHeight: 40,
+    headHeight: 64,
+    shoulderHeight: 24,
+    shoulderWidth: 70,
+    hipWidth: 32,
+    headOffset: 0.1, // How far from center head is pushed forward in facing direction
     parts: {
-        
         arm: {
             left: {
                 spriteName: 'dude0',
@@ -30,6 +35,7 @@ export const defaults = {
             length: 1,
             width: 0.42, // relative to length
             dir: 0,
+            rot: Math.PI/2,
         },
         leg: {
             left: {
@@ -40,10 +46,11 @@ export const defaults = {
                 spriteName: 'dude0',
                 sprite: null,
             },
-            hipWidth: 0.9,
+            hipWidth: 0.7,
             length: 1,
             width: 0.48, // relative to length
             dir: 0,
+            rot: Math.PI/2,
         },
         torso: {
             spriteName: 'dude0',
@@ -51,13 +58,15 @@ export const defaults = {
             height: 1.1,
             width: 1.2,
             dir: 0,
+            rot: 0,
         },
         head: {
             spriteName: 'dude0',
             sprite: null,
             height: 1.2,
-            offset: 0.1, // How far from center head is pushed forward in facing direction
+            
             dir: 0,
+            rot: 0,
         },
         eye: {
             left: {
@@ -69,11 +78,13 @@ export const defaults = {
                 sprite: null,
             },
             dir: 0,
+            rot: 0,
         },
         mouth: {
             spriteName: 'dude0',
             sprite: null,
             dir: 0,
+            rot: 0,
         }
     },
 }
