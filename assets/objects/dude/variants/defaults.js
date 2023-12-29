@@ -16,7 +16,7 @@ export const defaults = {
     },
     height: 5,  // all other lengths/widths are relative 
     legHeight: 40,
-    headHeight: 64,
+    headHeight: 58,
     shoulderHeight: 24,
     shoulderWidth: 90,
     hipWidth: 32,
