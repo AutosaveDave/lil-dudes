@@ -15,7 +15,7 @@ export const defaults = {
         maxSpeed: 12,
     },
     height: 5,  // all other lengths/widths are relative 
-    legHeight: 40,
+    legHeight: 48,
     headHeight: 62,
     shoulderHeight: 24,
     shoulderWidth: 90,

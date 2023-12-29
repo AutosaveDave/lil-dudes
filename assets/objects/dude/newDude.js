@@ -72,7 +72,7 @@ export const newDude = ( x, y, variant, ctx ) => {
             this.parts.head.dir = ( p.arm.dir + s ) % (2*Math.PI);
         },
         setPartCoords: function() {
-            const yDrawScale = 0.5;
+            const yDrawScale = 0.6;
 
             this.parts.arm.left.drawX = ( this.shoulderWidth/2 )*Math.cos( this.parts.torso.dir - Math.PI/2 );
             this.parts.arm.left.drawY = -( this.legHeight + this.shoulderHeight ) - yDrawScale*( this.shoulderWidth/2 )*Math.sin( this.parts.torso.dir - Math.PI/2 );
