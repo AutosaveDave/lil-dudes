@@ -104,7 +104,7 @@ export const newDude = ( x, y, variant, ctx ) => {
 
             this.ctx.drawImage( this.getPartSketch( 'leg', order.leg[0] ), this.x + this.parts.leg[ order.leg[0] ].drawX, this.y + this.parts.leg[ order.leg[0] ].drawY );
             this.ctx.drawImage( this.getPartSketch( 'leg', order.leg[1] ), this.x + this.parts.leg[ order.leg[1] ].drawX, this.y + this.parts.leg[ order.leg[1] ].drawY );
-            const headInBack = ( this.parts.torso.dir > Math.PI/4 && this.parts.torso.dir < 3*Math.PI/4 )
+            const headInBack = ( this.parts.torso.dir > Math.PI/5 && this.parts.torso.dir < 4*Math.PI/5 )
             if( headInBack ) {
                 this.ctx.drawImage( this.parts.head.sprite, this.x + this.parts.head.drawX, this.y + this.parts.head.drawY );
             }

@@ -16,11 +16,11 @@ export const defaults = {
     },
     height: 5,  // all other lengths/widths are relative 
     legHeight: 40,
-    headHeight: 58,
+    headHeight: 62,
     shoulderHeight: 24,
     shoulderWidth: 90,
     hipWidth: 32,
-    headOffset: 5, // How far from center head is pushed forward in facing direction
+    headOffset: 4, // How far from center head is pushed forward in facing direction
     parts: {
         arm: {
             left: {
