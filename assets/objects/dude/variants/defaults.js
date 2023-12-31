@@ -21,6 +21,7 @@ export const defaults = {
     shoulderWidth: 90,
     hipWidth: 32,
     headOffset: 4, // How far from center head is pushed forward in facing direction
+    eyeSpacing: 16,
     parts: {
         arm: {
             left: {

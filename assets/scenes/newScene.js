@@ -1,6 +1,7 @@
 import { sceneVariants } from "./sceneVariants.js";
 import { newDude } from "../objects/dude/newDude.js";
 import { getPartSprite } from "../objects/dude/sprites.js";
+import { newCamera } from "./camera/newCamera.js";
 
 export const newScene = ( variant, ctx, stageWidth, stageHeight ) => {
     const sceneProps = sceneVariants.defaults;
@@ -12,10 +13,8 @@ export const newScene = ( variant, ctx, stageWidth, stageHeight ) => {
     sceneProps.objects.forEach( objArray => { newObjects.push( newDude( ...objArray, ctx ) ) } );
     sceneProps.objects = newObjects;
 
-    const camx = sceneProps.camera.x * stageWidth;
-    const camy = sceneProps.camera.y * stageHeight;
-    sceneProps.camera.x = camx;
-    sceneProps.camera.y = camy;
+    const camObj = sceneProps.camera;
+    sceneProps.camera = newCamera( camObj.x * stageWidth, camObj.y * stageHeight, camObj.angle );
     return {
         ctx: ctx,
         sprites: { arm: [], eye: [], head: [],
@@ -68,14 +67,14 @@ export const newScene = ( variant, ctx, stageWidth, stageHeight ) => {
             if( !( delta === 0 || delta === undefined || delta === null ) ) {
                 const objCount = this.objects.length;
                 for( let i = 0 ; i < objCount ; i += 1 ) {
-                    this.objects[ i ].step( delta );
+                    this.objects[ i ].step( delta, this.camera.yScale );
                 }
                 
             }
         },
         draw: function() {
             this.objects.forEach( obj => {
-                obj.draw();
+                obj.draw( this.camera.yScale );
             } )
         },
         start: function() {

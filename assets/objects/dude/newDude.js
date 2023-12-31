@@ -12,7 +12,6 @@ export const newDude = ( x, y, variant, ctx ) => {
     sketchCanvas.width = 128;
     sketchCanvas.height = 128;
     const sketchCtx = sketchCanvas.getContext( '2d' );
-
     return {
         ctx: ctx,
         selfCanvas: dudeCanvas,
@@ -71,33 +70,26 @@ export const newDude = ( x, y, variant, ctx ) => {
             this.parts.torso.dir = ( p.arm.dir + s ) % (2*Math.PI);
             this.parts.head.dir = ( p.arm.dir + s ) % (2*Math.PI);
         },
-        setPartCoords: function() {
-            const yDrawScale = 0.6;
-
+        setPartCoords: function( yScale ) {
             this.parts.arm.left.drawX = ( this.shoulderWidth/2 )*Math.cos( this.parts.torso.dir - Math.PI/2 );
-            this.parts.arm.left.drawY = -( this.legHeight + this.shoulderHeight ) - yDrawScale*( this.shoulderWidth/2 )*Math.sin( this.parts.torso.dir - Math.PI/2 );
+            this.parts.arm.left.drawY = -( this.legHeight + this.shoulderHeight ) - yScale*( this.shoulderWidth/2 )*Math.sin( this.parts.torso.dir - Math.PI/2 );
             this.parts.arm.right.drawX = ( this.shoulderWidth/2 )*Math.cos( this.parts.torso.dir + Math.PI/2 );
-            this.parts.arm.right.drawY = -( this.legHeight + this.shoulderHeight ) - yDrawScale*( this.shoulderWidth/2 )*Math.sin( this.parts.torso.dir + Math.PI/2 );
+            this.parts.arm.right.drawY = -( this.legHeight + this.shoulderHeight ) - yScale*( this.shoulderWidth/2 )*Math.sin( this.parts.torso.dir + Math.PI/2 );
             this.parts.leg.left.drawX = ( this.hipWidth/2 )*Math.cos( this.parts.leg.dir - Math.PI/2 );
-            this.parts.leg.left.drawY = -this.legHeight - yDrawScale*( this.hipWidth/2 )*Math.sin( this.parts.leg.dir - Math.PI/2 );
+            this.parts.leg.left.drawY = -this.legHeight - yScale*( this.hipWidth/2 )*Math.sin( this.parts.leg.dir - Math.PI/2 );
             this.parts.leg.right.drawX = ( this.hipWidth/2 )*Math.cos( this.parts.leg.dir + Math.PI/2 );
-            this.parts.leg.right.drawY = -this.legHeight - yDrawScale*( this.hipWidth/2 )*Math.sin( this.parts.leg.dir + Math.PI/2 );
+            this.parts.leg.right.drawY = -this.legHeight - yScale*( this.hipWidth/2 )*Math.sin( this.parts.leg.dir + Math.PI/2 );
 
             this.parts.torso.drawX = 0;
             this.parts.torso.drawY = -this.legHeight - (this.shoulderHeight)/2;
             this.parts.head.drawX = this.headOffset*Math.cos( this.parts.torso.dir );
-            this.parts.head.drawY = -this.legHeight - this.headHeight - yDrawScale*this.headOffset*Math.sin( this.parts.torso.dir );
+            this.parts.head.drawY = -this.legHeight - this.headHeight - yScale*this.headOffset*Math.sin( this.parts.torso.dir );
         },
-        step: function( delta ) {
+        step: function( delta, yScale ) {
             this.spinDude( Math.PI/4, delta );
-            this.setPartCoords();
-            // const _parts = this.parts;
-            // const rotIncr = ( delta / 1000 ) * Math.PI / 2;
-            // Object.keys( _parts ).forEach( key => {
-            //     this.parts[ key ].dir += rotIncr;
-            // } );
+            this.setPartCoords( yScale );
         },
-        draw: function() {
+        draw: function( yScale ) {
             const order = this.getDrawOrder();
 
             this.ctx.drawImage( this.getPartSketch( 'arm', order.arm[0] ), this.x + this.parts.arm[ order.arm[0] ].drawX, this.y + this.parts.arm[ order.arm[0] ].drawY );

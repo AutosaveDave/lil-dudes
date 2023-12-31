@@ -1,7 +1,7 @@
 export const test = {
     variant: 'test',
     camera: {
-        angle: 35,
+        angle: Math.PI/5,
         direction: 0,
         x: 0.5,     
         y: 0.5,
