@@ -1,8 +1,8 @@
+
 /*  When creating a new dude, all scene properties are set to
     these default values unless the specified variant object contains
     a value for that property (in which case the variant's property
     values are used instead) */
-
 export const defaults = {
     velocity: [ 0, 0, 0 ],
 
@@ -22,6 +22,13 @@ export const defaults = {
     hipWidth: 32,
     headOffset: 4, // How far from center head is pushed forward in facing direction
     eyeSpacing: 16,
+    headRadiusX: 41.6,
+    headRadiusY: 41.6,
+    
+    face: {
+        tilt: 0,
+        
+    },
     parts: {
         arm: {
             left: {
@@ -32,9 +39,6 @@ export const defaults = {
                 spriteName: 'dude0',
                 sprite: null,
             },
-            shoulderWidth: 1.25,
-            length: 1,
-            width: 0.42, // relative to length
             dir: 0,
             rot: Math.PI/2,
         },
@@ -47,25 +51,18 @@ export const defaults = {
                 spriteName: 'dude0',
                 sprite: null,
             },
-            hipWidth: 0.7,
-            length: 1,
-            width: 0.48, // relative to length
             dir: 0,
             rot: Math.PI/2,
         },
         torso: {
             spriteName: 'dude0',
             sprite: null,
-            height: 1.1,
-            width: 1.2,
             dir: 0,
             rot: 0,
         },
         head: {
             spriteName: 'dude0',
             sprite: null,
-            height: 1.2,
-            
             dir: 0,
             rot: 0,
         },

@@ -4,7 +4,7 @@ export function getDudeParts() {
     const count = 1;
     for( let a = 0 ; a < count ; a += 1 ) {
         const typeName = `dude${ a }`;
-        result[ typeName ] = {} ;
+        result[ typeName ] = {};
         parts.forEach( part => {
             result[ typeName ][ part ] = `assets/images/dudeParts/${ typeName }/${ part }.svg`;
         } );

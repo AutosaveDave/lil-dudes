@@ -6,7 +6,10 @@ export const newDude = ( x, y, variant, ctx ) => {
         Object.assign( dudeProps, dudeVariants[ variant ] );
     }
     const dudeCanvas = document.createElement( 'canvas' );
-    
+    const faceCanvas = document.createElement( 'canvas' );
+    faceCanvas.width = 128;
+    faceCanvas.height = 128;
+    const faceCtx = faceCanvas.getContext( '2d' );
     const dudeCtx = dudeCanvas.getContext( '2d' );
     const sketchCanvas = document.createElement( 'canvas' );
     sketchCanvas.width = 128;
@@ -18,7 +21,10 @@ export const newDude = ( x, y, variant, ctx ) => {
         selfCtx: dudeCtx,
         sketchCanvas: sketchCanvas,
         sketchCtx: sketchCtx,
+        faceCanvas: faceCanvas,
+        faceCtx: faceCtx,
         sketchRot: 0,
+        faceRot: 0,
         x: x*100, y: y*100, z: 0,
         xspeed: 0, yspeed: 0, zspeed: 0,
 
@@ -29,14 +35,28 @@ export const newDude = ( x, y, variant, ctx ) => {
             this.sketchCtx.globalCompositeOperation = 'source-over';
             this.sketchCtx.clearRect( 0, 0, this.sketchCanvas.width, this.sketchCanvas.height ); // clear canvas
         },
+        clearFace: function() {
+            this.unrotateFace();
+            this.faceCtx.globalCompositeOperation = 'source-over';
+            this.faceCtx.clearRect( 0, 0, this.faceCanvas.width, this.faceCanvas.height ); // clear canvas
+        },
         unrotateSketch: function() {
             this.sketchCtx.rotate( -this.sketchRot );
             this.sketchRot = 0;
+        },
+        unrotateFace: function() {
+            this.faceCtx.rotate( -this.faceRot );
+            this.faceRot = 0;
         },
         rotateSketch: function( _angle ) {
             this.sketchCtx.rotate( _angle );
             const prevRot = this.sketchRot;
             this.sketchRot = ( prevRot + _angle ) % ( 2 * Math.PI );
+        },
+        rotateFace: function( _angle ) {
+            this.faceCtx.rotate( _angle );
+            const prevRot = this.faceRot;
+            this.faceRot = ( prevRot + _angle ) % ( 2 * Math.PI );
         },
         getPartSketch: function( _part, _side ) {
             this.clearSketch();
@@ -51,6 +71,14 @@ export const newDude = ( x, y, variant, ctx ) => {
             this.unrotateSketch();
             this.sketchCtx.translate( -sketchOffsetX, -sketchOffsetY );
             return this.sketchCanvas;
+        },
+        getFace: function() {
+            this.clearFace();
+            const faceOffsetX = this.faceCanvas.width/2;
+            const faceOffsetY = this.faceCanvas.height/2;
+            this.faceCtx.translate( faceOffsetX, faceOffsetY );
+            this.rotateFace( this.face.tilt );
+            
         },
         getDrawOrder: function() {
             return { 
@@ -96,7 +124,7 @@ export const newDude = ( x, y, variant, ctx ) => {
 
             this.ctx.drawImage( this.getPartSketch( 'leg', order.leg[0] ), this.x + this.parts.leg[ order.leg[0] ].drawX, this.y + this.parts.leg[ order.leg[0] ].drawY );
             this.ctx.drawImage( this.getPartSketch( 'leg', order.leg[1] ), this.x + this.parts.leg[ order.leg[1] ].drawX, this.y + this.parts.leg[ order.leg[1] ].drawY );
-            const headInBack = ( this.parts.torso.dir > Math.PI/5 && this.parts.torso.dir < 4*Math.PI/5 )
+            const headInBack = ( this.parts.torso.dir > 0 && this.parts.torso.dir < Math.PI )
             if( headInBack ) {
                 this.ctx.drawImage( this.parts.head.sprite, this.x + this.parts.head.drawX, this.y + this.parts.head.drawY );
             }
