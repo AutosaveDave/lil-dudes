@@ -1,6 +1,6 @@
 # lil-dudes
 
-lil-dudes is a JavaScript framework for drawing and animating simple pseudo-3D characters, designed for use in browser-based games. Characters are constructed from modular sprite parts (head, eyes, torso, arms, legs), allowing for easy customization and animation.
+lil-dudes is a JavaScript framework for drawing and animating simple pseudo-3D characters, designed for use in browser-based games. Characters are constructed from modular sprite parts (head, eyes, mouth, torso, arms, legs), allowing for easy customization and animation.
 
 ## Features
 - Modular character design using SVG sprites
@@ -10,11 +10,10 @@ lil-dudes is a JavaScript framework for drawing and animating simple pseudo-3D c
 
 
 ## TODO
-- Draw eyes on the front of the character's head based on head rotation and tilt.
+- Draw eyes and mouth on the front of the character's head based on head rotation and tilt.
 - Add a "walking" animation where the character's arms and legs swing based on sin/cos oscillations when the character is moving.
-    - Implement functions for scaling the length of arm and leg sprites.
+    - Implement functions for scaling the length of arm and leg sprites based on their tilt and rotation.
     - Implement functions for rotating arm and leg sprites to properly show their 3D orientation when rotated or tilted.
-- Improve documentation and add more usage examples.
 - Add more character part variants and support for accessories.
 - Implement more advanced scene and camera controls.
 
@@ -22,8 +21,18 @@ lil-dudes is a JavaScript framework for drawing and animating simple pseudo-3D c
 
 ### Running Locally
 1. Clone or download this repository.
-2. Open `index.html` in your web browser. No build step is required; all code runs in the browser.
-3. To test or modify the code, edit the JavaScript files and refresh the browser.
+2. **Start a local web server in the project directory.** This is required because modern browsers block ES module imports from local files for security reasons.
+   - If you have Python 3 installed, you can run:
+     ```
+     python -m http.server 8000
+     ```
+   - Or, if you have Node.js installed, you can use:
+     ```
+     npx serve .
+     ```
+   - You can use any other static file server as well- I used a "Live Server" extension in VS Code for testing.
+3. Open your browser and go to `http://localhost:8000/` (or the port your server uses).
+4. To test or modify the code, edit the JavaScript files and refresh the browser.
 
 ### File Structure
 
