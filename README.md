@@ -37,7 +37,7 @@ lil-dudes is a JavaScript framework for drawing and animating simple pseudo-3D c
 ### File Structure
 
 ```
-├── index.html            # Main HTML file to launch the demo
+├── index.html            # Main HTML file
 ├── index.js              # Entry point for initializing and running the framework
 ├── assets/
 │   └── images/
