@@ -70,7 +70,7 @@ lil-dudes is a JavaScript framework for drawing and animating simple pseudo-3D c
 ```
 
 ## How It Works
-Characters are assembled from SVG parts, each representing a body part. The framework handles positioning, layering, and animating these parts to create a pseudo-3D effect. You can add new parts or variants by placing SVGs in the appropriate folder and updating the relevant JS files.
+Characters are assembled from SVG parts, each representing a body part. The framework handles positioning, layering, and animating these parts to create a pseudo-3D effect. You can add new parts or variants by placing SVGs in the appropriate folder and adding/updating the relevant JS files.
 
 ## Customization
 - **Add new character parts:** Place new SVGs in `assets/images/dudeParts/` and update `index.js`.
